@@ -10,8 +10,19 @@ public class EnemySpawner : MonoBehaviour
     private float timer = 0; // Start timer
     private int enemyCount = 0; // enemyCounter
 
-    public bool StraightDownMovement, WaveMovement; // Boolean for enemy movement types
+    [SerializeField] private bool StraightDownMovement, WaveMovement = false; // Boolean for enemy movement types
                                                     // TO DO: use them when finished making different movement pattern
+    private void Start()
+    {
+        if(StraightDownMovement == true)
+        {
+            enemyPrefab.GetComponent<EnemyMovement>().StraightDownMovement = true;
+        }
+        if(WaveMovement == true)
+        {
+            enemyPrefab.GetComponent<EnemyMovement>().WaveMovement = true;
+        }
+    }
     private void Update()
     {
         timer -= Time.deltaTime;
@@ -29,8 +40,9 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-        Instantiate(enemyPrefab,transform.position,Quaternion.identity);
+        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         timer = spawnRate;
         enemyCount++;
+
     }
 }
