@@ -11,7 +11,15 @@ public class EnemySpawnTrigger : MonoBehaviour
         {
             for (int i = 0; i < spawners.Length; i++)
             {
-                spawners[i].SetActive(true);
+                if (spawners[i] != null) // Activate spawner when there is spawners GameObject in element
+                {
+                    spawners[i].SetActive(true);
+                }
+                else // Destroy Spawners Array when all elements are null
+                {
+                    Destroy(gameObject);
+                }
+                
             }
         }
     }
