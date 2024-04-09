@@ -12,17 +12,6 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private bool StraightDownMovement, WaveMovement = false; // Boolean for enemy movement types
                                                     // TO DO: use them when finished making different movement pattern
-    private void Start()
-    {
-        if(StraightDownMovement == true)
-        {
-            enemyPrefab.GetComponent<EnemyMovement>().StraightDownMovement = true;
-        }
-        if(WaveMovement == true)
-        {
-            enemyPrefab.GetComponent<EnemyMovement>().WaveMovement = true;
-        }
-    }
     private void Update()
     {
         timer -= Time.deltaTime;
@@ -40,7 +29,16 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        GameObject enemyClone = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        
+        if (StraightDownMovement == true)
+        {
+            enemyClone.GetComponent<EnemyMovement>().StraightDownMovement = true;
+        }
+        if (WaveMovement == true)
+        {
+            enemyClone.gameObject.GetComponent<EnemyMovement>().WaveMovement = true;
+        }
         timer = spawnRate;
         enemyCount++;
 
