@@ -1,23 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public Gun[] guns;
-    private float shootCoolDown = 0f; // Time between firing
-
+    [SerializeField] private AudioSource shootSound; // Shoot Sound
+    [SerializeField] private PlayerGun[] pGun; // Player Guns
+    private float startFireRates = 0.3f; // Start Firerate
+    public float currentFireRates; // Current Firerate
+    public int currentGunLevel; // Current Gun Level
+    private void Start()
+    {
+        currentGunLevel = 1; // gun level start at level 1
+        currentFireRates = startFireRates;        
+    }
     private void Update()
     {
-        shootCoolDown -= Time.deltaTime;
-        if(Input.GetMouseButton(0) && shootCoolDown <= 0)
+        startFireRates -= Time.deltaTime;
+        if (Input.GetMouseButton(0) && startFireRates <= 0f) // If clicked Left Mouse, Player shooting sound and shoot bullet
         {
-            foreach(Gun gun in guns)
-            {
-                gun.ShootBullet();
-            }            
-            shootCoolDown = 0.15f;
+            shootSound.Play();
+            for (int i = 0; i < currentGunLevel; i++)
+            {                
+                pGun[i].Shoot();
+                startFireRates = currentFireRates;
+            }
         }
     }
 }
