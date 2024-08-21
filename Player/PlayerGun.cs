@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-    public PlayerBullets bullet;
-    public Vector2 gunDirection;
+    public PlayerBullets bullet; // Bullet Prefab
+    public Vector2 gunDirection; // Direction gun facing
     private void Start()
     {
-        gunDirection = transform.localRotation * Vector2.up;
+        gunDirection = transform.localRotation * Vector2.up; // Store rotation data into the gunDirection
     }
     public void Shoot()
     {

@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class HealthKit : MonoBehaviour
 {
+    public Item itemData; // Item Data Scriptable Object
     public PlayerManager player;
-    [SerializeField] public int hpAmount = 3; // HP amount to restore player HP
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ship"))
-        {            
-            player.playerCurrentHP += hpAmount;            
-            Destroy(gameObject);
+        if (collision.CompareTag("Ship")) // If item hit player, Add item to the itemSlot with itemdata from it's scriptable object
+        {
+            if(InventoryManager.Instance.items.Count < InventoryManager.Instance.itemSlots.Length)
+            {
+                if (!InventoryManager.Instance.items.Contains(itemData))
+                {
+                    InventoryManager.Instance.AddItem(itemData);                    
+                    Destroy(gameObject); // destroy GameObject when player hit
+                }
+                else
+                {
+                    Debug.Log("You already have this item");
+                }
+            }
+            else
+            {
+                Debug.Log("Inventory Full");
+            }
         }
     }
 }

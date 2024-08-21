@@ -13,7 +13,7 @@ public class PlayerBullets : MonoBehaviour
         bPos += bulletDirection * speed * Time.deltaTime;
         transform.position = bPos;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) // If bullet hit enemy or pass the canvas, Disable Bullet
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {

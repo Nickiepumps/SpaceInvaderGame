@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 1f; // Enemy movement speed
+    public float speed = 1f; // Enemy movement speed
     private Vector2 direction = Vector2.down; // Enemy movement direction
     public bool StraightDownMovement, WaveMovement = false; // Boolean for enemy movement types
     public Rigidbody2D enemyRb; // enemy RB
@@ -21,25 +21,20 @@ public class EnemyMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(StraightDownMovement == true)
+        if (StraightDownMovement == true)
         {
             DownwardMovement();
         }
-        else if(WaveMovement == true)
+        if (WaveMovement == true)
         {
             SineMovement();
-        }
-        else
-        {
-            Debug.LogError("Select only 1 type of Movement!");
-        }
-        
+        }           
     }   
-    public void DownwardMovement()
+    public void DownwardMovement() // Straight down Movement
     {
         enemyRb.velocity = direction * speed;
     }
-    public void SineMovement()
+    public void SineMovement() // Sine Pattern Movement
     {
         enemyRb.velocity = direction * speed;
         Vector2 pos = transform.position;

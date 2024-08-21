@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class BulletPooler : MonoBehaviour
 {
-    public static BulletPooler instance;
-    public List<GameObject> bulletPool;
-    public GameObject bulletToPool;
-    public int size;
-
-    private void Awake()
+    public static BulletPooler instance; // Use for calling function in other scripts
+    public List<GameObject> bulletPool; // Bullet Pool
+    public GameObject bulletToPool; // Buller GameObject
+    public int size; // Pool size
+    private void Awake() // Singleton
     {
         instance = this;
     }
-    private void Start()
+    private void Start() // Instantiate object,disable it and add Bullet GameObject in the list
     {
         bulletPool = new List<GameObject>();
         GameObject bullet;
@@ -25,7 +24,7 @@ public class BulletPooler : MonoBehaviour
         }
 
     }
-    public GameObject SpawnBulletFromPool(Quaternion rotation)
+    public GameObject SpawnBulletFromPool(Quaternion rotation) // Make bullet's rotation accordingly to the gun's rotation
     {
         for(int i = 0; i < size; i++)
         {
