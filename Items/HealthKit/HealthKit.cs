@@ -12,15 +12,8 @@ public class HealthKit : MonoBehaviour
         {
             if(InventoryManager.Instance.items.Count < InventoryManager.Instance.itemSlots.Length)
             {
-                if (!InventoryManager.Instance.items.Contains(itemData))
-                {
-                    InventoryManager.Instance.AddItem(itemData);                    
-                    Destroy(gameObject); // destroy GameObject when player hit
-                }
-                else
-                {
-                    Debug.Log("You already have this item");
-                }
+                InventoryManager.Instance.AddItem(itemData);                    
+                Destroy(gameObject); // destroy GameObject when player hit
             }
             else
             {
