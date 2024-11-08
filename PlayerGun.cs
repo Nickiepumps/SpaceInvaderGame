@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-    public PlayerBullets bullet; // Bullet Prefab
     public Vector2 gunDirection; // Direction gun facing
     private void Start()
     {
@@ -12,7 +11,6 @@ public class PlayerGun : MonoBehaviour
     }
     public void Shoot()
     {
-        //GameObject bGo = Instantiate(bullet.gameObject, transform.position, transform.rotation);
         GameObject bullet = BulletPooler.instance.SpawnBulletFromPool(transform.rotation);
         if(bullet != null)
         {
