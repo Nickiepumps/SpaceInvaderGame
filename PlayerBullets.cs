@@ -15,7 +15,7 @@ public class PlayerBullets : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision) // If bullet hit enemy or pass the canvas, Disable Bullet
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Outside") || collision.gameObject.CompareTag("Enemy"))
         {
             gameObject.SetActive(false);
         }
