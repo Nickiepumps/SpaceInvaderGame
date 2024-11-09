@@ -6,7 +6,7 @@ public class BulletPooler : MonoBehaviour
 {
     public static BulletPooler instance; // Use for calling function in other scripts
     public List<GameObject> bulletPool; // Bullet Pool
-    public GameObject bulletToPool; // Buller GameObject
+    public GameObject bulletToPool; // Bullet GameObject
     public int size; // Pool size
     private void Awake() // Singleton
     {
